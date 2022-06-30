@@ -1,5 +1,6 @@
 from multiprocessing import context
-from django.shortcuts import render
+from unicodedata import name
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Product
 
@@ -33,5 +34,37 @@ def accessory(request):
 def feedback(request):
     return render(request, 'appOne/feedback.html')
 
-def adform(request):
-    return render(request, 'appOne/adform.html')
+def add_product(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        price = request.POST.get('price')
+        desc = request.POST.get('desc')
+        image = request.FILES['upload']# add enctype="multipart/form-data" in the form
+        product = Product(name = name, price = price, desc = desc, image = image)
+        product.save()
+    return render(request, 'appOne/add_product.html')
+
+
+def update_product(request, id):
+    product = Product.objects.get(id=id)
+    if request.method == 'POST':
+        product.name = request.POST.get('name')
+        product.price = request.POST.get('price')
+        product.desc = request.POST.get('desc')
+        product.image = request.FILES['upload']# add enctype="multipart/form-data" in the form
+        product.save()
+        return redirect('/')
+    context = {
+        'product' : product
+    }
+    return render(request, 'appOne/update_product.html', context)
+
+def delete_product(request, id):
+    product = Product.objects.get(id=id)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('/')
+    context = {
+        'product' : product
+    }
+    return render(request, 'appOne/delete_product.html', context)

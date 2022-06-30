@@ -1,13 +1,17 @@
 {% extends 'appOne/base.html'%}
 
 {%block content%}
-    <div class="p-10 grid grid-cols-1 sm:grid-cols-1 mg:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 gap-5">
+    <div class="mx-auto p-10 grid grid-cols-1 sm:grid-cols-1 mg:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 gap-5">
         <div class="rounded overlow-hidden shadow-lg">
                 <img class="w-full " src="{{mobile.image.url}}">
                 <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2">{{mobile.name}}</div>
                     <div class="font-bold text-xl text-green-500 mb-2">$ {{mobile.price}}</div>
-                    <p class="text-grey-700 text-base">{{mobile.desc}}</p>
+                        <p class="text-grey-700 text-base mb-2">{{mobile.desc}}</p>
+                        <div class="">
+                            <a href="{% url 'appOne:update_product_link' mobile.id %}" class="justify-end bg-yellow-500 text-black active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">update<i class="fas fa-heart"></i></a>
+                            <a href="{% url 'appOne:delete_product_link' mobile.id %}" class="justify-end bg-red-500 text-black active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">delete<i class="fas fa-heart"></i></a>
+                        </div>
                 </div>
             </div>
     </div>

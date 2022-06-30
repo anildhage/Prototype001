@@ -1,0 +1,16 @@
+{% extends 'appOne/base.html'%}
+
+{%block content%}
+    <div class="mt-10 mx-auto max-w-lg px-4 sm:st-12 sm:px-6 d:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Name" type="text" name="name" id="name">
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Price" type="text" name="price" id="price">
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Description" type="text" name="desc" id="desc">
+            <input class=" shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" accept="image/*" name="upload" id="upload">
+            <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" name="Add_product" value="Add product" id="">
+        </form>
+    </div>
+    
+{%endblock%}
+
